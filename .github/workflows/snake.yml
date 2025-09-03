@@ -1,38 +1,61 @@
-name: Generate Snake
-
+name: Generate Contribution Snake
 
 on:
-schedule:
-- cron: "0 0 * * *" # jalan tiap hari 00:00 UTC
-workflow_dispatch: # bisa dijalankan manual
-push:
-branches: ["main"] # update saat ada push ke main
+  # Jalan otomatis tiap hari (00:00 UTC)
+  schedule:
+    - cron: "0 0 * * *"
+  # Bisa dijalankan manual dari tab Actions
+  workflow_dispatch:
+  # Opsi: regenerasi saat ada perubahan di README utama
+  push:
+    branches: ["main"]
+    paths:
+      - "README.md"
+      - ".github/workflows/snake.yml"
 
+permissions:
+  contents: write  # butuh untuk push ke branch 'output'
+
+concurrency:
+  group: "snake-${{ github.ref }}"
+  cancel-in-progress: false
 
 jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- name: Generate snake SVG
-uses: Platane/snk@v3
-with:
-github_user_name: evan # ganti jika username kamu beda
-outputs: |
-dist/snake.svg
+  build-snake:
+    runs-on: ubuntu-latest
 
+    env:
+      GITHUB_USER: EVAN   # <<< GANTI dengan username kamu
 
-- name: Upload artifact (opsional)
-uses: actions/upload-artifact@v4
-with:
-name: snake
-path: dist/snake.svg
+    steps:
+      - name: Generate SVG (dark & light)
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ env.GITHUB_USER }}
+          outputs: |
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake-light.svg?palette=github-light
 
+      # (Opsional) hasil GIF — lebih berat, tapi bisa dipakai jika suka
+      # - name: Generate GIF (dark)
+      #   uses: Platane/snk@v3
+      #   with:
+      #     github_user_name: ${{ env.GITHUB_USER }}
+      #     outputs: |
+      #       dist/github-contribution-grid-snake.gif
 
-- name: Push to output branch
-if: ${{ github.ref == 'refs/heads/main' }}
-uses: crazy-max/ghaction-github-pages@v4
-with:
-target_branch: output
-build_dir: dist
-env:
-GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifact (opsional, untuk inspeksi di Actions)
+        uses: actions/upload-artifact@v4
+        with:
+          name: snake-assets
+          path: dist/
+
+      - name: Push to 'output' branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+          fqdn: ""
+          keep_history: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
