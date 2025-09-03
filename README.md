@@ -18,17 +18,10 @@
 
 ---
 
-### 🌟 Proyek Unggulan
-- 🚗 [Showroom Mobil Evan](https://github.com/evan/showroom-mobil-evan)  
-- 📱 [Sentiment Analysis JKN](https://github.com/evan/sentiment-analysis-jkn)  
-- 🎮 [Unity Action Game](https://github.com/evan/unity-action-game)
-
----
 
 ### 📫 Hubungi Saya
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white)](https://linkedin.com/in/evan)  
-[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=instagram&logoColor=white)](https://instagram.com/evan.dev)  
-[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:evan@example.com)
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=instagram&logoColor=white)](https://instagram.com/r.zaevan_)  
+[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:r.zaevan21@gmail.com)
 
 ---
 
