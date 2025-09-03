@@ -26,7 +26,7 @@
 ---
 
 ### 🐍 Contribution Snake
-![Snake animation](https://github.com/evan/evan/blob/output/github-contribution-grid-snake.svg)
+![Snake animation](https://github.com/rclasio/Evan/blob/output/github-contribution-grid-snake.svg)
 
 ---
 
